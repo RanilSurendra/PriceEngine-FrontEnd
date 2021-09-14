@@ -1,0 +1,99 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <h4>Price Calculator</h4>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="priceCalForm">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group row">
+
+                    <label class="col-sm-2 col-form-label" for="product">Product: </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="product" formControlName="product" required>
+                            <option [ngValue]="null" disabled>Select Product</option>
+                            <option *ngFor="let product of products" [ngValue]="product.id">
+                                {{product.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2 pt-0">Catogory:</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="radio" name="unit" id="single" value="single"
+                                    formControlName="unit" required>
+                                <label class="form-check-label" for="single">
+                                    Single unit
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+
+                                <input class="form-check-input" type="radio" name="unit" id="carton" value="carton"
+                                    formControlName="unit" required>
+                                <label class="form-check-label" for="carton">
+                                    Carton
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4">
+
+                <div class="form-group row">
+
+                    <label for="unit" class="col-sm-2 col-form-label">Units: </label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="unit" required formControlName="unitCount"
+                            min="0">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
+                <button class="btn btn-primary" type="button" [disabled]="!priceCalForm.valid" (click)="calculatePrice()">Calculate</button>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group row">
+
+                    <label for="price" class="col-sm-2 col-form-label">Price:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="price" formControlName="price">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
